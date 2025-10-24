@@ -3,6 +3,10 @@
 
 #include <SDL2/SDL.h>
 
+//#include <SDL2/SDL.h>
+
+// #include /opt/homebrew/include/SDL2
+
 #define			HEIGHT	768
 #define			WIDTH	1024
 
@@ -12,9 +16,9 @@ struct color{
 	int b;
 };
 
-SDL_Texture* texture;
-SDL_Renderer* renderer;
-SDL_Window* window;
+// SDL_Texture* texture;
+// SDL_Renderer* renderer;
+// SDL_Window* window;
 
 void setup();
 void set_color( int r, int g, int b);

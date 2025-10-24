@@ -3,10 +3,12 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#inclue "zoomjoystrong2.tab.h"
+#include "zoomjoystrong.h"
 
 int yylex(void);
 void yyerror(const char *s);
+
+double var[26];
 %}
 
 %union {
@@ -19,11 +21,11 @@ void yyerror(const char *s);
 
 
 /* Token declarations (from Flex) */
-/*%token <ival> INT  */
+/* %token <fval> INT  */
 %token <fval> FLOAT INT
-%token PLUS MINUS MULT DIV        /* single chars */
+%token PLUS MINUS MULT DIV              /* single chars */
 %token CIRCLE RECTANGLE LINE POINT      /* commands */
-%token  <var> VARIABLE                         /* identifier with semantic value */
+%token  <var> VARIABLE                  /* identifier with semantic value */
 %token SET_COLOR
 %token END_STATEMENT
 %token END EQUALS
@@ -47,37 +49,38 @@ statements:
 
 
 statement:
-    POINT expr expr 
-    | LINE expr expr expr expr 
-    | CIRCLE expr expr expr 
-    | RECTANGLE expr expr expr expr 
-    | SET_COLOR expr expr expr
+    POINT expr expr                     { point($2, $3)}
+    | LINE expr expr expr expr          { line($2, $3, $4, $5)}
+    | CIRCLE expr expr expr             { circle($2, $3, $4)}
+    | RECTANGLE expr expr expr expr     { rectangle($2, $3, $4, $5)}
+    | SET_COLOR expr expr expr          { set_color($2, $3, $4)}
     | VARIABLE EQUALS
+    | END                               { YYACCEPT; }
 ;
 
 
 expr:
     INT
-    | FLOAT             
-    | VARIABLE         {$$ = var[$1 - 'A']}
-    | expr PLUS expr   { $$ = $1 + $3; }
-    | expr MINUS expr { $$ = $1 - $3; }
-    | expr MULT expr
-    | expr DIV expr
+    | FLOAT             {$$ = $1;}
+    | VARIABLE          {$$ = var[$1 - 'A']}
+    | expr PLUS expr    { $$ = $1 + $3; }
+    | expr MINUS expr   { $$ = $1 - $3; }
+    | expr MULT expr    { $$ = $1 * $3; }
+    | expr DIV expr     { $$ = $1 / $3; }
     /* | '(' expr ')' */
-    
-    
 ;
-
 
 
 %%
 
-int main() {
-    printf("Simple Calculator (Flex + Bison)\n");
+int main(void) {
+    setup();
+    printf("Simple Draw program (Flex + Bison)\n");
     printf("Type expressions and press Enter.\n");
-    printf("Example: (5 + 3) * 2\n\n");
+    printf("Example: SET_COLOR 50 100 150\n\n");
     yyparse();
+    printf("Done Parsing\n");
+    finish();
     return 0;
 }
 

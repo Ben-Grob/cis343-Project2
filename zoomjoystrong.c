@@ -1,6 +1,12 @@
 #include "zoomjoystrong.h"
+SDL_Texture* texture;
+SDL_Renderer* renderer;
+SDL_Window* window;
+
+
 #include <math.h>
 #include <SDL2/SDL.h>
+// #include /opt/homebrew/include/SDL2
 #include <unistd.h>
 
 struct color current;
