@@ -53,7 +53,16 @@ statement:
     | LINE expr expr expr expr          { line($2, $3, $4, $5)}
     | CIRCLE expr expr expr             { circle($2, $3, $4)}
     | RECTANGLE expr expr expr expr     { rectangle($2, $3, $4, $5)}
-    | SET_COLOR expr expr expr          { set_color($2, $3, $4)}
+    | SET_COLOR expr expr expr          {
+        // check to see if number values are in range (0-255)
+        if (($2 >= 0 && $2 <= 255) && ($3 >= 0 && $3 <= 255) && ($4 >= 0 && $4 <= 255)){
+            set_color($2, $3, $4);
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-100)");
+        }
+    }
+    ;
     | VARIABLE EQUALS
     | END                               { YYACCEPT; }
 ;
@@ -77,7 +86,7 @@ int main(void) {
     setup();
     printf("Simple Draw program (Flex + Bison)\n");
     printf("Type expressions and press Enter.\n");
-    printf("Example: SET_COLOR 50 100 150\n\n");
+    printf("Example: SET_COLOR 50 100 150;\n\n");
     yyparse();
     printf("Done Parsing\n");
     finish();

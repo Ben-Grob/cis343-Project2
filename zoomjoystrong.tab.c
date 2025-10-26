@@ -447,7 +447,7 @@ static const yytype_int8 yyrhs[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    42,    42,    45,    47,    52,    53,    54,    55,    56,
-      57,    58,    63,    64,    65,    66,    67,    68,    69
+      65,    66,    71,    72,    73,    74,    75,    76,    77
 };
 #endif
 
@@ -1392,47 +1392,54 @@ yyreduce:
 
   case 9:
 #line 56 "zoomjoystrong.y"
-    { set_color((yyvsp[(2) - (4)].fval), (yyvsp[(3) - (4)].fval), (yyvsp[(4) - (4)].fval));}
+    {
+        if (((yyvsp[(2) - (4)].fval) >= 0 && (yyvsp[(2) - (4)].fval) <= 255) && ((yyvsp[(3) - (4)].fval) >= 0 && (yyvsp[(3) - (4)].fval) <= 255) && ((yyvsp[(4) - (4)].fval) >= 0 && (yyvsp[(4) - (4)].fval) <= 255)){
+            set_color((yyvsp[(2) - (4)].fval), (yyvsp[(3) - (4)].fval), (yyvsp[(4) - (4)].fval));
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-100)");
+        }
+    ;}
     break;
 
   case 11:
-#line 58 "zoomjoystrong.y"
+#line 66 "zoomjoystrong.y"
     { YYACCEPT; ;}
     break;
 
   case 13:
-#line 64 "zoomjoystrong.y"
+#line 72 "zoomjoystrong.y"
     {(yyval.fval) = (yyvsp[(1) - (1)].fval);;}
     break;
 
   case 14:
-#line 65 "zoomjoystrong.y"
+#line 73 "zoomjoystrong.y"
     {(yyval.fval) = var[(yyvsp[(1) - (1)].var) - 'A'];}
     break;
 
   case 15:
-#line 66 "zoomjoystrong.y"
+#line 74 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) + (yyvsp[(3) - (3)].fval); ;}
     break;
 
   case 16:
-#line 67 "zoomjoystrong.y"
+#line 75 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) - (yyvsp[(3) - (3)].fval); ;}
     break;
 
   case 17:
-#line 68 "zoomjoystrong.y"
+#line 76 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) * (yyvsp[(3) - (3)].fval); ;}
     break;
 
   case 18:
-#line 69 "zoomjoystrong.y"
+#line 77 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) / (yyvsp[(3) - (3)].fval); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1436 "zoomjoystrong.tab.c"
+#line 1443 "zoomjoystrong.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1646,14 +1653,14 @@ yyreturn:
 }
 
 
-#line 74 "zoomjoystrong.y"
+#line 82 "zoomjoystrong.y"
 
 
 int main(void) {
     setup();
     printf("Simple Draw program (Flex + Bison)\n");
     printf("Type expressions and press Enter.\n");
-    printf("Example: SET_COLOR 50 100 150\n\n");
+    printf("Example: SET_COLOR 50 100 150;\n\n");
     yyparse();
     printf("Done Parsing\n");
     finish();

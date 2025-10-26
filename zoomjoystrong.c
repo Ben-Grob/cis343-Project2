@@ -33,6 +33,22 @@ void setup(){
 	current.r = 0;
 	current.b = 0;
 	current.g = 0;
+
+	/*
+	SDL_Init(SDL_INIT_VIDEO);
+
+	
+	SDL_Event e;
+	int quit = 0;
+	while (!quit) {
+		while (SDL_PollEvent(&e)) {
+			if (e.type == SDL_QUIT) quit = 1;
+		}
+		// SDL_RenderPresent(renderer);
+
+		SDL_Delay(16); // idle loop to keep CPU low
+	}
+	*/
 }
 
 void set_color( int r, int g, int b){
@@ -40,6 +56,7 @@ void set_color( int r, int g, int b){
 	current.b = g;
 	current.g = b;
 	SDL_SetRenderDrawColor( renderer, r, g, b, 255);
+	printf("setting color\n");
 }
 
 void point( int x, int y ){
@@ -48,6 +65,7 @@ void point( int x, int y ){
 	SDL_SetRenderTarget(renderer, NULL);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);
+	printf("making point\n");
 }
 
 void line( int x1, int y1, int x2, int y2 ){
@@ -56,6 +74,7 @@ void line( int x1, int y1, int x2, int y2 ){
 	SDL_SetRenderTarget(renderer, NULL);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);
+	printf("making line\n");
 }
 
 void circle(int x, int y, int r){
@@ -63,6 +82,7 @@ void circle(int x, int y, int r){
 		float u = x + r * cos(i);
 		float v = y + r * sin(i);
 		point(u, v);
+		printf("making circle\n");
 	}
 } 
 
@@ -77,6 +97,7 @@ void rectangle(int x, int y, int w, int h){
 	SDL_SetRenderTarget(renderer, NULL);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);
+	printf("making rectangle\n");
 }
 
 void finish(){
