@@ -43,7 +43,7 @@ program:
 ;
 
 statements:  
-    /* lines different from statements? */
+    /* empty */
     | statements statement END_STATEMENT    
 ;
 
@@ -59,10 +59,9 @@ statement:
             set_color($2, $3, $4);
         } else {
             // Signal a parse error if the value is out of range
-            yyerror("Number is out of range (0-100)");
+            yyerror("Number is out of range (0-255)");
         }
     }
-    ;
     | VARIABLE EQUALS
     | END                               { YYACCEPT; }
 ;
@@ -71,7 +70,7 @@ statement:
 expr:
     INT
     | FLOAT             {$$ = $1;}
-    | VARIABLE          {$$ = var[$1 - 'A']}
+    | VARIABLE          {$$ = var[$1 - 'A'];}
     | expr PLUS expr    { $$ = $1 + $3; }
     | expr MINUS expr   { $$ = $1 - $3; }
     | expr MULT expr    { $$ = $1 * $3; }

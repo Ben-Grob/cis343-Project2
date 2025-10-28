@@ -1,32 +1,26 @@
-#ifndef			__ZOOMJOYSTRONG__
-#define			__ZOOMJOYSTRONG__
+#ifndef ZOOMJOYSTRONG_H
+#define ZOOMJOYSTRONG_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>   // ✅ Make sure this line stays like this — no SDL2/ prefix
 
-//#include <SDL2/SDL.h>
+// --- Window constants ---
+#define WIDTH 800
+#define HEIGHT 600
 
-// #include /opt/homebrew/include/SDL2
-
-#define			HEIGHT	768
-#define			WIDTH	1024
-
-struct color{
-	int r;
-	int g;
-	int b;
+// --- Color structure ---
+struct color {
+    int r;
+    int g;
+    int b;
 };
 
-// SDL_Texture* texture;
-// SDL_Renderer* renderer;
-// SDL_Window* window;
-
+// --- Function prototypes ---
 void setup();
-void set_color( int r, int g, int b);
-void point( int x, int y );
-void line( int x1, int y1, int x2, int y2 );
-void circle( int x, int y, int r);
-void rectangle( int x, int y, int w, int h);
 void finish();
-void sdl_ellipse(SDL_Renderer* r, int x0, int y0, int radiusX, int radiusY);
- 
+void set_color(int r, int g, int b);
+void point(int x, int y);
+void line(int x1, int y1, int x2, int y2);
+void circle(int x, int y, int radius);
+void rectangle(int x, int y, int w, int h);
+
 #endif

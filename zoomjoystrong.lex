@@ -24,24 +24,23 @@ NUMBER  {DIGIT}+(\.{DIGIT}+)?
 "circle"          { return CIRCLE; }
 "rectangle"       { return RECTANGLE; }
 "set_color"       { return SET_COLOR; };
-$.              { yylval.var = yytext[1]; return VARIABLE; }
-"="             { return EQUALS; }
-"\+"            { return PLUS; }
-"-"             { return MINUS; }
-"\*"            { return MULT; }
-"/"             { return DIV; }
-[ \t]+          ;      /* ignore spaces */
-[ \n]+          ;      /* ignore new lines */
 
 [0-9]+\.[0-9]+  { yylval.fval = atof(yytext); return FLOAT; }
 [0-9]+          { yylval.fval = (float)atoi(yytext); return INT; }
 
 \$[a-zA-Z]      { yylval.var = yytext[1]; return VARIABLE; }
+
+
+"="             { return EQUALS; }
+"\+"            { return PLUS; }
+"-"             { return MINUS; }
+"\*"            { return MULT; }
+"/"             { return DIV; }
+
+[ \t]+          ;      /* ignore spaces */
+[ \n]+          ;      /* ignore new lines */
 .               { printf("Unknown character: %s\n", yytext); }
 
 
 
 %%
-
-/*** User code section (not sure what to add here)***/
-/* int yywrap(void) { return 1; } */

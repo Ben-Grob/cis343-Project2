@@ -1393,11 +1393,12 @@ yyreduce:
   case 9:
 #line 56 "zoomjoystrong.y"
     {
+        // check to see if number values are in range (0-255)
         if (((yyvsp[(2) - (4)].fval) >= 0 && (yyvsp[(2) - (4)].fval) <= 255) && ((yyvsp[(3) - (4)].fval) >= 0 && (yyvsp[(3) - (4)].fval) <= 255) && ((yyvsp[(4) - (4)].fval) >= 0 && (yyvsp[(4) - (4)].fval) <= 255)){
             set_color((yyvsp[(2) - (4)].fval), (yyvsp[(3) - (4)].fval), (yyvsp[(4) - (4)].fval));
         } else {
             // Signal a parse error if the value is out of range
-            yyerror("Number is out of range (0-100)");
+            yyerror("Number is out of range (0-255)");
         }
     ;}
     break;
@@ -1414,7 +1415,7 @@ yyreduce:
 
   case 14:
 #line 73 "zoomjoystrong.y"
-    {(yyval.fval) = var[(yyvsp[(1) - (1)].var) - 'A'];}
+    {(yyval.fval) = var[(yyvsp[(1) - (1)].var) - 'A'];;}
     break;
 
   case 15:
@@ -1439,7 +1440,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1443 "zoomjoystrong.tab.c"
+#line 1444 "zoomjoystrong.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
