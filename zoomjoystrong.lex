@@ -6,9 +6,6 @@
 #include <stdlib.h>
 %}
 
-/* Regular expressions */
-DIGIT   [0-9]
-NUMBER  {DIGIT}+(\.{DIGIT}+)?
 
 /* keywords are case insensitive */
 %option noyywrap

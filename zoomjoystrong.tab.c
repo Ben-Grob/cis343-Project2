@@ -1696,22 +1696,13 @@ void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
 }
 
-///bison -d calc.y      # Generates calc.tab.c and calc.tab.h
-//flex calc.l          # Generates lex.yy.c
-//gcc calc.tab.c lex.yy.c -o calc -lm
-//./calc
+///bison -d zoomjoystrong.y      # Generates zoomjoystrong.tab.c and zoomjoystrong.tab.h
+//flex zoomjoystrong.lex         # Generates lex.yy.c
+//gcc zoomjoystrong.tab.c lex.yy.c -o zoomjoystrong -lm
+//./zoomjoystrong
 //Sample RUn
-//Simple Calculator (Flex + Bison)
+//Simple Drawing program (Flex + Bison)
 //Type expressions and press Enter.
-// Example: (5 + 3) * 2
+// Example: set_color 50 50 50;
 
-// 5 + 3
-// = 8.00
-
-// (5 + 3) * 2
-// = 16.00
-
-// 7 / 0
-// Error: Division by zero!
-// = 0.00
 

@@ -502,10 +502,9 @@ char *yytext;
 #include <stdio.h>
 #include <stdlib.h>
 #line 504 "lex.yy.c"
-/* Regular expressions */
 /* keywords are case insensitive */
 /* Identify Tokens */
-#line 508 "lex.yy.c"
+#line 507 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -722,9 +721,9 @@ YY_DECL
 		}
 
 	{
-#line 18 "zoomjoystrong.lex"
+#line 15 "zoomjoystrong.lex"
 
-#line 727 "lex.yy.c"
+#line 726 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -783,106 +782,106 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 19 "zoomjoystrong.lex"
+#line 16 "zoomjoystrong.lex"
 { return END; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "zoomjoystrong.lex"
+#line 17 "zoomjoystrong.lex"
 { return END_STATEMENT; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "zoomjoystrong.lex"
+#line 18 "zoomjoystrong.lex"
 { return END_STATEMENT; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 22 "zoomjoystrong.lex"
+#line 19 "zoomjoystrong.lex"
 { return POINT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 23 "zoomjoystrong.lex"
+#line 20 "zoomjoystrong.lex"
 { return LINE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 24 "zoomjoystrong.lex"
+#line 21 "zoomjoystrong.lex"
 { return CIRCLE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 25 "zoomjoystrong.lex"
+#line 22 "zoomjoystrong.lex"
 { return RECTANGLE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 26 "zoomjoystrong.lex"
+#line 23 "zoomjoystrong.lex"
 { return SET_COLOR; };
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "zoomjoystrong.lex"
+#line 25 "zoomjoystrong.lex"
 { yylval.fval = atof(yytext); return FLOAT; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "zoomjoystrong.lex"
+#line 26 "zoomjoystrong.lex"
 { yylval.fval = (float)atoi(yytext); return INT; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 31 "zoomjoystrong.lex"
+#line 28 "zoomjoystrong.lex"
 { yylval.var = yytext[1]; return VARIABLE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 34 "zoomjoystrong.lex"
+#line 31 "zoomjoystrong.lex"
 { return EQUALS; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 35 "zoomjoystrong.lex"
+#line 32 "zoomjoystrong.lex"
 { return PLUS; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "zoomjoystrong.lex"
+#line 33 "zoomjoystrong.lex"
 { return MINUS; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "zoomjoystrong.lex"
+#line 34 "zoomjoystrong.lex"
 { return MULT; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 38 "zoomjoystrong.lex"
+#line 35 "zoomjoystrong.lex"
 { return DIV; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 40 "zoomjoystrong.lex"
+#line 37 "zoomjoystrong.lex"
 ;      /* ignore spaces */
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 41 "zoomjoystrong.lex"
+#line 38 "zoomjoystrong.lex"
 ;      /* ignore new lines */
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "zoomjoystrong.lex"
+#line 39 "zoomjoystrong.lex"
 { printf("Unknown character: %s\n", yytext); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 46 "zoomjoystrong.lex"
+#line 43 "zoomjoystrong.lex"
 ECHO;
 	YY_BREAK
-#line 885 "lex.yy.c"
+#line 884 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1887,6 +1886,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 46 "zoomjoystrong.lex"
+#line 43 "zoomjoystrong.lex"
 
 
