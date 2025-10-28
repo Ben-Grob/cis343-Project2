@@ -49,10 +49,34 @@ statements:
 
 
 statement:
-    POINT expr expr                     { point($2, $3)}
-    | LINE expr expr expr expr          { line($2, $3, $4, $5)}
+    POINT expr expr                     {
+        // check to see if number values are in range (0-WIDTH/HEIGHT)
+        if (($2 <= WIDTH && $2 >= 0) && ($3 >= 0 && $3 <= HEIGHT)){
+            point($2, $3);
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-800/0-600)");
+        }
+    }
+    | LINE expr expr expr expr          {
+        // check to see if number values are in range (0-WIDTH/HEIGHT)
+        if (($2 <= WIDTH && $2 >= 0) && ($3 >= 0 && $3 <= HEIGHT) && ($4 >= 0 && $4 <= WIDTH) && ($5 >= 0 && $5 <= HEIGHT)){
+            line($2, $3, $4, $5);
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-800/0-600)");
+        }
+    }
     | CIRCLE expr expr expr             { circle($2, $3, $4)}
-    | RECTANGLE expr expr expr expr     { rectangle($2, $3, $4, $5)}
+    | RECTANGLE expr expr expr expr     {
+        // check to see if number values are in range (0-WIDTH/HEIGHT)
+        if (($2 <= WIDTH && $2 >= 0) && ($3 >= 0 && $3 <= HEIGHT) && ($4 >= 0 && $4 <= WIDTH) && ($5 >= 0 && $5 <= HEIGHT)){
+            rectangle($2, $3, $4, $5);
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-800/0-600)");
+        }
+    }
     | SET_COLOR expr expr expr          {
         // check to see if number values are in range (0-255)
         if (($2 >= 0 && $2 <= 255) && ($3 >= 0 && $3 <= 255) && ($4 >= 0 && $4 <= 255)){

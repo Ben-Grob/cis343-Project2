@@ -446,8 +446,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    42,    42,    45,    47,    52,    53,    54,    55,    56,
-      65,    66,    71,    72,    73,    74,    75,    76,    77
+       0,    42,    42,    45,    47,    52,    61,    70,    71,    80,
+      89,    90,    95,    96,    97,    98,    99,   100,   101
 };
 #endif
 
@@ -1372,26 +1372,50 @@ yyreduce:
     {
         case 5:
 #line 52 "zoomjoystrong.y"
-    { point((yyvsp[(2) - (3)].fval), (yyvsp[(3) - (3)].fval));}
+    {
+        // check to see if number values are in range (0-WIDTH/HEIGHT)
+        if (((yyvsp[(2) - (3)].fval) <= WIDTH && (yyvsp[(2) - (3)].fval) >= 0) && ((yyvsp[(3) - (3)].fval) >= 0 && (yyvsp[(3) - (3)].fval) <= HEIGHT)){
+            point((yyvsp[(2) - (3)].fval), (yyvsp[(3) - (3)].fval));
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-800/0-600)");
+        }
+    ;}
     break;
 
   case 6:
-#line 53 "zoomjoystrong.y"
-    { line((yyvsp[(2) - (5)].fval), (yyvsp[(3) - (5)].fval), (yyvsp[(4) - (5)].fval), (yyvsp[(5) - (5)].fval));}
+#line 61 "zoomjoystrong.y"
+    {
+        // check to see if number values are in range (0-WIDTH/HEIGHT)
+        if (((yyvsp[(2) - (5)].fval) <= WIDTH && (yyvsp[(2) - (5)].fval) >= 0) && ((yyvsp[(3) - (5)].fval) >= 0 && (yyvsp[(3) - (5)].fval) <= HEIGHT) && ((yyvsp[(4) - (5)].fval) >= 0 && (yyvsp[(4) - (5)].fval) <= WIDTH) && ((yyvsp[(5) - (5)].fval) >= 0 && (yyvsp[(5) - (5)].fval) <= HEIGHT)){
+            line((yyvsp[(2) - (5)].fval), (yyvsp[(3) - (5)].fval), (yyvsp[(4) - (5)].fval), (yyvsp[(5) - (5)].fval));
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-800/0-600)");
+        }
+    ;}
     break;
 
   case 7:
-#line 54 "zoomjoystrong.y"
+#line 70 "zoomjoystrong.y"
     { circle((yyvsp[(2) - (4)].fval), (yyvsp[(3) - (4)].fval), (yyvsp[(4) - (4)].fval));}
     break;
 
   case 8:
-#line 55 "zoomjoystrong.y"
-    { rectangle((yyvsp[(2) - (5)].fval), (yyvsp[(3) - (5)].fval), (yyvsp[(4) - (5)].fval), (yyvsp[(5) - (5)].fval));}
+#line 71 "zoomjoystrong.y"
+    {
+        // check to see if number values are in range (0-WIDTH/HEIGHT)
+        if (((yyvsp[(2) - (5)].fval) <= WIDTH && (yyvsp[(2) - (5)].fval) >= 0) && ((yyvsp[(3) - (5)].fval) >= 0 && (yyvsp[(3) - (5)].fval) <= HEIGHT) && ((yyvsp[(4) - (5)].fval) >= 0 && (yyvsp[(4) - (5)].fval) <= WIDTH) && ((yyvsp[(5) - (5)].fval) >= 0 && (yyvsp[(5) - (5)].fval) <= HEIGHT)){
+            rectangle((yyvsp[(2) - (5)].fval), (yyvsp[(3) - (5)].fval), (yyvsp[(4) - (5)].fval), (yyvsp[(5) - (5)].fval));
+        } else {
+            // Signal a parse error if the value is out of range
+            yyerror("Number is out of range (0-800/0-600)");
+        }
+    ;}
     break;
 
   case 9:
-#line 56 "zoomjoystrong.y"
+#line 80 "zoomjoystrong.y"
     {
         // check to see if number values are in range (0-255)
         if (((yyvsp[(2) - (4)].fval) >= 0 && (yyvsp[(2) - (4)].fval) <= 255) && ((yyvsp[(3) - (4)].fval) >= 0 && (yyvsp[(3) - (4)].fval) <= 255) && ((yyvsp[(4) - (4)].fval) >= 0 && (yyvsp[(4) - (4)].fval) <= 255)){
@@ -1404,43 +1428,43 @@ yyreduce:
     break;
 
   case 11:
-#line 66 "zoomjoystrong.y"
+#line 90 "zoomjoystrong.y"
     { YYACCEPT; ;}
     break;
 
   case 13:
-#line 72 "zoomjoystrong.y"
+#line 96 "zoomjoystrong.y"
     {(yyval.fval) = (yyvsp[(1) - (1)].fval);;}
     break;
 
   case 14:
-#line 73 "zoomjoystrong.y"
+#line 97 "zoomjoystrong.y"
     {(yyval.fval) = var[(yyvsp[(1) - (1)].var) - 'A'];;}
     break;
 
   case 15:
-#line 74 "zoomjoystrong.y"
+#line 98 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) + (yyvsp[(3) - (3)].fval); ;}
     break;
 
   case 16:
-#line 75 "zoomjoystrong.y"
+#line 99 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) - (yyvsp[(3) - (3)].fval); ;}
     break;
 
   case 17:
-#line 76 "zoomjoystrong.y"
+#line 100 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) * (yyvsp[(3) - (3)].fval); ;}
     break;
 
   case 18:
-#line 77 "zoomjoystrong.y"
+#line 101 "zoomjoystrong.y"
     { (yyval.fval) = (yyvsp[(1) - (3)].fval) / (yyvsp[(3) - (3)].fval); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1444 "zoomjoystrong.tab.c"
+#line 1468 "zoomjoystrong.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1654,7 +1678,7 @@ yyreturn:
 }
 
 
-#line 82 "zoomjoystrong.y"
+#line 106 "zoomjoystrong.y"
 
 
 int main(void) {
